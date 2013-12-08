@@ -33,6 +33,8 @@ gem 'anjlab-bootstrap-rails', :require => 'bootstrap-rails', :github => 'anjlab/
 
 #auth
 gem 'devise'
+gem 'omniauth'
+gem 'omniauth-facebook'
 
 group :development do
   gem 'awesome_print'
