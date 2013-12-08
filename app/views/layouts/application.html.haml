@@ -4,7 +4,7 @@
   =render :partial => "layouts/head"
 
   %body
-    =render :partial => "shared/navbar"
+    =render :partial => "shared/navbar_main"
     .container
 
       .row
@@ -14,9 +14,6 @@
               =notice
             .alert
               =alert
-      .row
-        .span12
-          = render :partial => 'search/search_box'
       .row
         .span12
           #main-content
