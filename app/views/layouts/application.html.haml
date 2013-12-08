@@ -1,0 +1,26 @@
+!!!
+%html{lang: "en"}
+  
+  =render :partial => "layouts/head"
+
+  %body
+    =render :partial => "shared/navbar"
+    .container
+
+      .row
+        -if notice || alert
+          .flash-msgs
+            .notice
+              =notice
+            .alert
+              =alert
+      .row
+        .span12
+          = render :partial => 'search/search_box'
+      .row
+        .span12
+          #main-content
+            = yield
+      / /row
+      =render :partial => "layouts/footer"
+    / /container
