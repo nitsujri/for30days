@@ -1,3 +1,22 @@
-=@user.display_name
-.test
-  Logged in
+.page_header
+  %h1
+    Edit Profile
+.row
+  .span12
+    =form_for @user, html: { class: "form-horizontal", role: "form"} do |f|
+      .form-group
+        %label.col-sm-2.control-label{:for => "email"}
+          E-mail
+        .col-sm-4
+          %p.form-control-static
+          =@user.email
+      .form-group
+        %label.col-sm-2.control-label{:for => "user_time_zone"}
+          Time Zone
+        .col-sm-4
+          =time_zone_select( "user", "time_zone", nil, {:default => "Pacific Time (US & Canada)"}, { :class => "form-control" })
+
+      .form-group
+        .col-sm-offset-2.col-sm-10
+          %button.submit.btn.btn-primary{type: "submit"}
+            Submit

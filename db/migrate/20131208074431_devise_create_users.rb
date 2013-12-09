@@ -24,6 +24,8 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.string :display_name
       t.string :fb_access_token
 
+      t.string :time_zone
+
       ## Confirmable
       # t.string   :confirmation_token
       # t.datetime :confirmed_at

@@ -11,7 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131208074431) do
+ActiveRecord::Schema.define(version: 20131209055919) do
+
+  create_table "tasks", force: true do |t|
+    t.string   "name"
+    t.integer  "user_id"
+    t.date     "start_date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -28,6 +36,7 @@ ActiveRecord::Schema.define(version: 20131208074431) do
     t.string   "uid"
     t.string   "display_name"
     t.string   "fb_access_token"
+    t.string   "time_zone"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

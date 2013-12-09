@@ -5,6 +5,8 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
   devise :omniauthable, :omniauth_providers => [:facebook]
 
+  has_many :tasks
+
   # Facebook Stuffs ===============================================
 
   def self.find_for_facebook_oauth(auth, signed_in_resource=nil)
@@ -17,6 +19,7 @@ class User < ActiveRecord::Base
                           email: auth.info.email,
                           password: Devise.friendly_token[0,20],
                           fb_access_token: auth.credentials.token,
+                          time_zone: "Pacific Time (US & Canada)"
                          )
     else
       if user and user.confirmed?
