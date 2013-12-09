@@ -7,9 +7,14 @@
         %span.icon-bar
         %span.icon-bar
         %span.icon-bar
-      %a.navbar-brand{href: root_url} For 30 Day-es
+      %a.navbar-brand{href: root_url} For 30 Day.es
     / Collect the nav links, forms, and other content for toggling
     .collapse.navbar-collapse.navbar-ex1-collapse
       %ul.nav.navbar-nav
         %li
           = link_to "Home", root_url
+
+      %ul.nav.navbar-nav.navbar-right
+        -if current_user
+          %li
+            = link_to current_user.name, users_url(current_user.id)
