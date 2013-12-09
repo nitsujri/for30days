@@ -1,10 +1,15 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
+  before_filter :authenticate_user!
 
   # GET /tasks
   # GET /tasks.json
   def index
-    @tasks = Task.all
+    if params[:user_id]
+      @tasks = Task.where(user_id: params[:user_id])
+    else
+      @tasks = Task.all
+    end
   end
 
   # GET /tasks/1
@@ -15,6 +20,7 @@ class TasksController < ApplicationController
   # GET /tasks/new
   def new
     @task = Task.new
+    @task.start_date = Time.now.to_date.in_time_zone(current_user.time_zone).to_date
   end
 
   # GET /tasks/1/edit
@@ -25,6 +31,7 @@ class TasksController < ApplicationController
   # POST /tasks.json
   def create
     @task = Task.new(task_params)
+    @task.user_id = current_user.id
 
     respond_to do |format|
       if @task.save

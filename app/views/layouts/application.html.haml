@@ -7,13 +7,15 @@
     =render :partial => "shared/navbar_main"
     .container
 
-      .row
-        -if notice || alert
+      -if notice || alert
+        .row
           .flash-msgs
-            .notice
-              =notice
-            .alert
-              =alert
+            -if notice
+              .alert.alert-success.notice
+                =notice
+            -if alert
+              .alert.alert-danger
+                =alert
       .row
         .span12
           #main-content

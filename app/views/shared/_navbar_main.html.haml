@@ -13,6 +13,9 @@
       %ul.nav.navbar-nav
         %li
           = link_to "Home", root_url
+        -if user_signed_in?
+          %li
+            =link_to Task.display_name_s, user_tasks_url(current_user.id)
 
       %ul.nav.navbar-nav.navbar-right
         -if user_signed_in?

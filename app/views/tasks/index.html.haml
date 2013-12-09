@@ -1,0 +1,21 @@
+%h1="Your #{Task.display_name_s_long}"
+%table.table
+  %thead
+    %tr
+      %th Name
+      %th User
+      %th Start date
+      %th
+      %th
+      %th
+  %tbody
+    - @tasks.each do |task|
+      %tr
+        %td= task.name
+        %td= task.user_id
+        %td= task.start_date
+        %td= link_to 'Show', task
+        %td= link_to 'Edit', edit_task_path(task)
+        %td= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' }
+%br/
+= link_to "New #{Task.display_name_long}", new_task_path

@@ -1,0 +1,29 @@
+.row
+  .span12
+    =form_for @task, html: { class: "form-horizontal", role: "form"} do |f|
+      - if @task.errors.any?
+        #error_explanation.alert.alert-danger
+          %h2
+            = pluralize(@task.errors.count, "error")
+            prohibited this task from being saved:
+          %ul
+            - @task.errors.full_messages.each do |msg|
+              %li= msg
+      .form-group
+        %label.col-sm-2.control-label{:for => "name"}
+          ="#{Task.display_name} Name"
+        .col-sm-4
+          = f.text_field :name, class: "col-sm-4 form-control", placeholder: "#{Task.display_name_long} Name"
+
+      .form-group
+        = f.label :start_date, class: "col-sm-2 control-label"
+        .col-sm-4
+          = f.text_field :start_date, id: "task-start-date", class: "col-sm-2 form-control"
+
+      .form-group
+        .col-sm-offset-2.col-sm-10
+          %button.submit.btn.btn-primary{type: "submit"}
+            -if params[:action] == "new"
+              ="Create New #{Task.display_name_long}"
+            -else
+              ="Update #{Task.display_name}"

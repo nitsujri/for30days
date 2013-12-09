@@ -1,13 +1,14 @@
 For30days::Application.routes.draw do
+  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
+
+  resources :users, path: "profile" do
+    resources :tasks, path: "goals"
+  end
 
   resources :tasks
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
-
-  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
-
-  resources :users, path: "profile"
 
 
   # You can have the root of your site routed with "root"
