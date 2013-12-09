@@ -44,6 +44,7 @@ group :development do
 end
 
 group :development, :test do
+  gem 'database_cleaner'
   gem 'rspec-rails', '~> 3.0.0.beta'
   gem 'guard-rspec', require: false
   gem 'factory_girl_rails'
