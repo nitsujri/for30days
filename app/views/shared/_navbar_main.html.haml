@@ -17,7 +17,8 @@
       %ul.nav.navbar-nav.navbar-right
         -if user_signed_in?
           %li
-            = link_to current_user.display_name, user_url(current_user.id)
+
+            = link_to "#{image_tag @graph.get_picture("me"), class: "nav_profile_pic"} #{current_user.display_name}".html_safe, user_url(current_user.id), class: "nav_profile"
           %li.dropdown
             %a{:href => "#", :class => "dropdown-toggle", :"data-toggle" => "dropdown"}
               .glyphicon.glyphicon-cog

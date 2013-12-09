@@ -21,7 +21,7 @@ class User < ActiveRecord::Base
     else
       if user and user.confirmed?
         user.update_attribute('fb_access_token', auth.credentials.token)
-      else
+      end
     end
     user
   end
