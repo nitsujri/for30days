@@ -17,6 +17,7 @@ ActiveRecord::Schema.define(version: 20131209055919) do
     t.string   "name"
     t.integer  "user_id"
     t.date     "start_date"
+    t.string   "status",     default: "inactive"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

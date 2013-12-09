@@ -3,6 +3,18 @@ class Task < ActiveRecord::Base
 
   belongs_to :user
 
+  def has_conflicts?(user)
+    current_start_date = self.start_date
+
+    Task.where(status: ['inactive', 'active']).where(user_id: user.id).each do |t|
+      if current_start_date > t.start_date and current_start_date <= t.start_date + 30.days
+        return true
+      end
+    end
+    
+    false
+  end
+
   class << self
     #display_name
     def display_name

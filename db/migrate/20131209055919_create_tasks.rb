@@ -4,6 +4,7 @@ class CreateTasks < ActiveRecord::Migration
       t.string :name
       t.integer :user_id
       t.date :start_date
+      t.string :status, default: "inactive"
 
       t.timestamps
     end
