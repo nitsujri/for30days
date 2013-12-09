@@ -1,2 +1,17 @@
-Hello,
-=current_user.display_name
+-if @current_task
+  .page-header
+    %h1
+      %small
+        Day
+      =(@current_task.start_date - Date.today).abs.round + 1
+  Justin, were you able to
+  =surround '"', '"' do
+    =@current_task.name
+  today?
+
+  =link_to "Yes", "#", class: "btn btn-success"
+  =link_to "No", "#", class: "btn btn-default"
+
+-else
+  %h1
+    You have no tasks yet. Let's start one!

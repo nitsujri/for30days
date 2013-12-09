@@ -22,7 +22,7 @@ class User < ActiveRecord::Base
                           time_zone: "Pacific Time (US & Canada)"
                          )
     else
-      if user and user.confirmed?
+      if user
         user.update_attribute('fb_access_token', auth.credentials.token)
       end
     end

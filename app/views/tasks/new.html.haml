@@ -1,3 +1,10 @@
-%h1="Let's Start a New - #{Task.display_name_long}"
+.page-header
+  %h1
+    %small
+      I want to
+    =surround '"', '"' do
+      %span#do-this="Tackle This"
+    %small
+      each day for 30 Days
 = render 'form'
 = link_to 'Back', tasks_path

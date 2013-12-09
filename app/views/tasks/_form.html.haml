@@ -11,9 +11,9 @@
               %li= msg
       .form-group
         %label.col-sm-2.control-label{:for => "name"}
-          ="#{Task.display_name} Name"
+          ="Daily #{Task.display_name}"
         .col-sm-4
-          = f.text_field :name, class: "col-sm-4 form-control", placeholder: "#{Task.display_name_long} Name"
+          = f.text_field :name, id: "new-goal-name", class: "col-sm-4 form-control", placeholder: "Tackle This"
 
       .form-group
         = f.label :start_date, class: "col-sm-2 control-label"
