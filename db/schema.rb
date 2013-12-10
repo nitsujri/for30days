@@ -11,12 +11,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131210093032) do
+ActiveRecord::Schema.define(version: 20131210095024) do
+
+  create_table "task_logs", force: true do |t|
+    t.integer  "task_id"
+    t.integer  "user_id"
+    t.string   "status"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "task_logs", ["task_id"], name: "index_task_logs_on_task_id", using: :btree
+  add_index "task_logs", ["user_id"], name: "index_task_logs_on_user_id", using: :btree
 
   create_table "tasks", force: true do |t|
     t.string   "name"
     t.integer  "user_id"
     t.date     "start_date"
+    t.string   "status",     default: "inactive"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

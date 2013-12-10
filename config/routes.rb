@@ -2,7 +2,10 @@ For30days::Application.routes.draw do
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 
   resources :users, path: "profile" do
-    resources :tasks, path: "goals"
+    resources :tasks, path: "goals" do
+      get 'completed' => 'task#completed', :as => 'completed'
+      get 'missed' => 'task#missed', :as => 'missed'
+    end
   end
 
   # The priority is based upon order of creation: first created -> highest priority.
