@@ -21,7 +21,7 @@
         -if user_signed_in?
           %li
 
-            = link_to "#{image_tag @graph.get_picture("me"), class: "nav_profile_pic"} #{current_user.display_name}".html_safe, user_url(current_user.id), class: "nav_profile"
+            = link_to "#{(image_tag current_user.profile_picture, class: "nav_profile_pic") if current_user.profile_picture.present?} #{current_user.display_name}".html_safe, user_url(current_user.id), class: "nav_profile"
           %li.dropdown
             %a{:href => "#", :class => "dropdown-toggle", :"data-toggle" => "dropdown"}
               .glyphicon.glyphicon-cog
