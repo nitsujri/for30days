@@ -1,3 +1,13 @@
+.page-header
+  %h1
+    %small
+      I want to
+    =surround '"', '"' do
+      %span#do-this="Tackle This"
+    %small
+      each day for 30 Days
+= render 'form'
+
 %h1="Your #{Task.display_name_s_long}"
 %table.table
   %thead
@@ -14,8 +24,8 @@
         %td= task.name
         %td= task.user_id
         %td= task.start_date
-        %td= link_to 'Show', task
-        %td= link_to 'Edit', edit_task_path(task)
-        %td= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' }
+        %td= link_to 'Show', user_task_path(current_user.id, task)
+        %td= link_to 'Edit', edit_user_task_path(current_user.id, task)
+        %td= link_to 'Destroy', user_task_path(current_user.id, task), method: :delete, data: { confirm: 'Are you sure?' }
 %br/
-= link_to "New #{Task.display_name_long}", new_task_path
+= link_to "New #{Task.display_name_long}", new_user_task_path(current_user.id)

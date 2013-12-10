@@ -1,6 +1,6 @@
 .row
   .span12
-    =form_for @task, html: { class: "form-horizontal", role: "form"} do |f|
+    =form_for [current_user, @task], html: { class: "form-horizontal", role: "form"} do |f|
       - if @task.errors.any?
         #error_explanation.alert.alert-danger
           %h2
