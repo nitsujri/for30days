@@ -13,7 +13,6 @@
   %thead
     %tr
       %th Name
-      %th User
       %th Date Started
       %th
       %th
@@ -21,8 +20,7 @@
     - @tasks.each do |task|
       %tr
         %td= task.name
-        %td= task.user_id
-        %td= task.start_date
+        %td= task.start_date.strftime("%b %d, %Y") if task.start_date.present?
         %td= link_to 'Edit', edit_user_task_path(current_user.id, task)
         %td= link_to 'Destroy', user_task_path(current_user.id, task), method: :delete, data: { confirm: 'Are you sure?' }
 %br/
