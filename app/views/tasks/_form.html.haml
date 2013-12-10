@@ -16,14 +16,9 @@
           = f.text_field :name, id: "new-goal-name", class: "col-sm-4 form-control", placeholder: "Tackle This"
 
       .form-group
-        = f.label :start_date, class: "col-sm-2 control-label"
-        .col-sm-4
-          = f.text_field :start_date, id: "task-start-date", class: "col-sm-2 form-control"
-
-      .form-group
         .col-sm-offset-2.col-sm-10
           %button.submit.btn.btn-primary{type: "submit"}
-            -if params[:action] == "new"
+            -unless params[:action] == "edit"
               ="Create New #{Task.display_name_long}"
             -else
               ="Update #{Task.display_name}"

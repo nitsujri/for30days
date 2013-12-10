@@ -5,7 +5,7 @@
     =surround '"', '"' do
       %span#do-this="Tackle This"
     %small
-      each day for 30 Days
+      each day for 30 days
 = render 'form'
 
 %h1="Your #{Task.display_name_s_long}"
@@ -14,8 +14,7 @@
     %tr
       %th Name
       %th User
-      %th Start date
-      %th
+      %th Date Started
       %th
       %th
   %tbody
@@ -24,7 +23,6 @@
         %td= task.name
         %td= task.user_id
         %td= task.start_date
-        %td= link_to 'Show', user_task_path(current_user.id, task)
         %td= link_to 'Edit', edit_user_task_path(current_user.id, task)
         %td= link_to 'Destroy', user_task_path(current_user.id, task), method: :delete, data: { confirm: 'Are you sure?' }
 %br/

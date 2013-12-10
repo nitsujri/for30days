@@ -36,7 +36,7 @@ class TasksController < ApplicationController
 
     respond_to do |format|
       if @task.save
-        format.html { redirect_to @task, notice: 'Task was successfully created.' }
+        format.html { redirect_to :back, notice: 'Task was successfully created.' }
         format.json { render action: 'show', status: :created, location: @task }
       else
         format.html { render action: 'new' }
@@ -64,7 +64,7 @@ class TasksController < ApplicationController
   def destroy
     @task.destroy
     respond_to do |format|
-      format.html { redirect_to tasks_url }
+      format.html { redirect_to user_tasks_url }
       format.json { head :no_content }
     end
   end
@@ -77,7 +77,6 @@ class TasksController < ApplicationController
 
     def load_new_task
       @task = Task.new
-      @task.start_date = Time.now.to_date.in_time_zone(current_user.time_zone).to_date
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
