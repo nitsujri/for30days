@@ -8,6 +8,10 @@ class HomeController < ApplicationController
                           .where("DATE(start_date) >= ?", Date.today - 30.days).first
       end
 
+      unless @current_task.present?
+        #grab all "inactive tasks"
+      end
+
       render "logged_in"
     end
   end

@@ -4,14 +4,12 @@
       %small
         Day
       =(@current_task.start_date - Date.today).abs.round + 1
-  Justin, were you able to
-  =surround '"', '"' do
-    =@current_task.name
-  today?
+      %small
+        {
+        =@current_task.name
+        }
 
-  =link_to "Yes", "#", class: "btn btn-success"
-  =link_to "No", "#", class: "btn btn-default"
-
+  =render :partial => "tasks/daily_task_mark_journal"
 -else
   %h1
     You have no tasks yet. Let's start one!

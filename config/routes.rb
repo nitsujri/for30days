@@ -3,8 +3,9 @@ For30days::Application.routes.draw do
 
   resources :users, path: "profile" do
     resources :tasks, path: "goals" do
-      get 'completed' => 'task#completed', :as => 'completed'
-      get 'missed' => 'task#missed', :as => 'missed'
+      get 'start'     => 'tasks#start', :as => 'start'
+      get 'completed' => 'tasks#completed', :as => 'completed'
+      get 'missed'    => 'tasks#missed', :as => 'missed'
     end
   end
 

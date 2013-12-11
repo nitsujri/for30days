@@ -69,6 +69,77 @@ class TasksController < ApplicationController
     end
   end
 
+  # Other things =====================================================
+  def start
+    @task = Task.find(params[:task_id])
+
+    respond_to do |format|
+      unless @task.has_conflicts?
+        @task.update_attributes(status: "active")
+
+        msg = "Awesome, let's go tackle - #{@task.name}"
+
+        format.html { redirect_to :back, notice: msg}
+        format.json { render json: { :task => @task, message: msg } }
+      else
+
+        msg = "Sorry there's already an active task! Let's finish that one first."
+
+        format.html { redirect_to :back, alert: msg}
+        format.json { render json: { :task => @task, message: msg } }
+      end
+    end
+
+  end
+
+  # Daily Task Completion ============================================
+  def completed
+    @task = Task.find(params[:task_id])
+
+    respond_to do |format|
+      unless @task.marked_today?
+        @tasklog = TaskLog.create( task_id: @task.id, user_id: current_user.id, status: "completed")
+
+        msg = "#{@task.name} completed today, good job!"
+
+        
+        format.html { redirect_to :back, notice: msg}
+        format.json { render json: { :task_log => @tasklog, message: msg } }
+        
+      else
+        msg = "This you already marked this as completed today."
+
+        #also need to be able to respond to 30+ days
+        format.html { redirect_to :back, alert: msg}
+        format.json { render json: { :message => msg, :status => "failed" } }
+      end
+    end
+
+  end
+
+  def missed
+
+    respond_to do |format|
+      unless @task.marked_today?
+        @tasklog = TaskLog.create( task_id: @task.id, user_id: current_user.id, status: "missed")
+
+        msg = "Sorry, you missed #{@task.name} today."
+
+        
+        format.html { redirect_to :back, notice: msg}
+        format.json { render json: { :task_log => @tasklog, message: msg } }
+        
+      else
+        msg = "This you already marked this as missed today."
+
+        #also need to be able to respond to 30+ days
+        format.html { redirect_to :back, alert: msg}
+        format.json { render json: { :message => msg, :status => "failed" } }
+      end
+    end
+  end
+
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_task

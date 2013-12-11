@@ -1,0 +1,12 @@
+.daily-task-mark-journal
+
+  -unless @has_completed
+    Justin, were you able to
+    =surround '"', '"' do
+      =@current_task.name
+    today?
+
+    =link_to "Yes", user_task_completed_url(current_user.id, @current_task.id), class: "btn btn-success"
+    =link_to "No", user_task_missed_url(current_user.id, @current_task.id), class: "btn btn-default"
+  -else
+    stuff

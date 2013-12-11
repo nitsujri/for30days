@@ -39,11 +39,8 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 gem "koala", "~> 1.8.0rc1"
 
-group :development do
-  gem 'awesome_print'
-end
-
 group :development, :test do
+  gem 'awesome_print'
   gem 'database_cleaner'
   gem 'rspec-rails', '~> 3.0.0.beta'
   gem 'guard-rspec', require: false
