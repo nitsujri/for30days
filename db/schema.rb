@@ -48,10 +48,10 @@ ActiveRecord::Schema.define(version: 20131210095024) do
     t.string   "uid"
     t.string   "display_name"
     t.string   "fb_access_token"
+    t.string   "profile_picture"
     t.string   "time_zone"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "profile_picture"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

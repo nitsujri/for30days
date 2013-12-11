@@ -1,0 +1,22 @@
+-if @inactive_tasks.present?
+  %table.table
+    %thead
+      %tr
+        %th
+        %th
+          Name
+        %th
+    -@inactive_tasks.to_enum.with_index(1).each do |t, index|
+      %tr
+        %td
+          ="#{index}."
+        %td
+          =t.name
+        %td
+          =link_to "Start", user_task_start_url(current_user.id, t.id), class: "btn btn-success"
+
+-else
+  %h1
+    You have no tasks yet. Let's start one!
+
+    =render :partial => "tasks/form", :locals => {:task => @new_task}

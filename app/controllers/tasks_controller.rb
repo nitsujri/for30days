@@ -75,7 +75,10 @@ class TasksController < ApplicationController
 
     respond_to do |format|
       unless @task.has_conflicts?
-        @task.update_attributes(status: "active")
+        @task.update_attributes({
+          status: "active",
+          start_date: Time.now.in_time_zone(@task.user.time_zone).to_date
+        })
 
         msg = "Awesome, let's go tackle - #{@task.name}"
 

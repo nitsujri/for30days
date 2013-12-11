@@ -8,8 +8,18 @@ class HomeController < ApplicationController
                           .where("DATE(start_date) >= ?", Date.today - 30.days).first
       end
 
-      unless @current_task.present?
+      if @current_task.blank?
+        @inactive_tasks = Task.where(status: "inactive")
+
+        if @inactive_tasks.blank?
+          #if there are no tasks, create one
+          @new_task = Task.new
+        end
+
+        #if there are tasks, let's start an inactive one
+
         #grab all "inactive tasks"
+
       end
 
       render "logged_in"

@@ -1,13 +1,13 @@
 .row
   .span12
-    =form_for [current_user, @task], html: { class: "form-horizontal", role: "form"} do |f|
-      - if @task.errors.any?
+    =form_for [current_user, task], html: { class: "form-horizontal", role: "form"} do |f|
+      - if task.errors.any?
         #error_explanation.alert.alert-danger
           %h2
-            = pluralize(@task.errors.count, "error")
+            = pluralize(task.errors.count, "error")
             prohibited this task from being saved:
           %ul
-            - @task.errors.full_messages.each do |msg|
+            - task.errors.full_messages.each do |msg|
               %li= msg
       .form-group
         %label.col-sm-2.control-label{:for => "name"}
