@@ -3,6 +3,8 @@ For30days::Application.routes.draw do
 
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 
+  post 'getting-started' => 'getting_started#index', :as => 'getting_started'
+
   resources :users, path: "profile" do
     resources :tasks, path: "goals" do
       get 'start'     => 'tasks#start', :as => 'start'

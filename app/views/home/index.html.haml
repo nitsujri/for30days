@@ -1,17 +1,30 @@
-hi
-%br
-= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook)
-= link_to "Log Out", destroy_user_session_url, :method => :delete
-
-#fb-root
-:javascript
-  (function(d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) return;
-    js = d.createElement(s); js.id = id;
-    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=667053510005683";
-    fjs.parentNode.insertBefore(js, fjs);
-  }(document, 'script', 'facebook-jssdk'));
 
 
-.fb-login-button{:"data-max-rows" => 1, :"data-show-faces" => "true"}
+.row
+  .col-md-7
+    .page-header.bs-masthead{role: "main"}
+      .container
+        %h1
+          %small
+            Step 1. 
+          Who? What? Why? How?
+    .video-container
+      %iframe{allowfullscreen: "", frameborder: "0", height: "360", mozallowfullscreen: "", scrolling: "no", src: "http://embed.ted.com/talks/matt_cutts_try_something_new_for_30_days.html", webkitallowfullscreen: "", width: "640"}
+
+      .vid-link
+        =link_to "Matt Cutts: Try Something New for 30 Days", "http://www.ted.com/talks/matt_cutts_try_something_new_for_30_days.html", target: "_blank", rel: "nofollow"
+
+
+  .col-md-5
+    .page-header.bs-masthead{role: "main"}
+      .container
+        %h1
+          %small
+            Step 2.
+          Now... Do
+    =form_tag "", id: "first-goal", role: "form" do
+      .form-group
+        =text_field :task, :name, class: "form-control"
+      .form-group
+        %button.btn.btn-success{type: "submit"}
+          First New Thing
