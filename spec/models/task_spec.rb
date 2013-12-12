@@ -8,20 +8,32 @@ describe Task do
   describe "Conflict check" do
     before :each do
       @user = create(:user)
-      @task = create(:task)
+      @task = create(:task, start_date: Time.now.in_time_zone(@user.time_zone).to_date)
     end
 
     it "Has a Conflict" do
-      r = Task.new(name: "test", user_id: @user.id).has_conflicts?
+      r = Task.new(id: 2, name: "test", user_id: @user.id, start_date: Time.now.in_time_zone(@user.time_zone).to_date).has_conflicts?
 
       r.should be(true)
     end
 
-    it "Beyond 31 days - No Conflict" do
+    it "Beyond 29 days - Conflict" do
       r = Task.new(
+          id: 2,
           name: "test", 
           user_id: @user.id,
-          start_date: Date.today + 31.day
+          start_date: Time.now.in_time_zone(@user.time_zone).to_date + 29.day
+        ).has_conflicts?
+
+      r.should be(true)
+    end
+
+    it "Beyond 30 days - No Conflict" do
+      r = Task.new(
+          id: 2,
+          name: "test", 
+          user_id: @user.id,
+          start_date: Time.now.in_time_zone(@user.time_zone).to_date + 30.day
         ).has_conflicts?
 
       r.should be(false)

@@ -5,15 +5,18 @@ class Task < ActiveRecord::Base
 
   has_many :task_logs
 
+  #We are 1 indexed
   def day_count
     (self.start_date - Date.today.in_time_zone(self.user.time_zone).to_date).abs.round + 1
   end
 
   def has_conflicts?
-    current_start_date = self.start_date || Time.now.in_time_zone(self.user.time_zone)
+    current_start_date = self.start_date
+
 
     Task.where(status: ['inactive', 'active']).where(user_id: self.user.id).where("id <> ?", self.id).each do |t|
-      if current_start_date > t.start_date and current_start_date <= t.start_date + 30.days
+
+      if current_start_date >= t.start_date and current_start_date < t.start_date + 30.days
         return true
       end
     end
