@@ -11,7 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131210095024) do
+ActiveRecord::Schema.define(version: 20131212052940) do
+
+  create_table "journals", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "journable_id"
+    t.string   "jounerable_type"
+    t.text     "text"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "task_logs", force: true do |t|
     t.integer  "task_id"

@@ -7,6 +7,10 @@ For30days::Application.routes.draw do
       get 'completed' => 'tasks#completed', :as => 'completed'
       get 'missed'    => 'tasks#missed', :as => 'missed'
     end
+
+    resources :journals do
+      
+    end
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

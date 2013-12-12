@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
   devise :omniauthable, :omniauth_providers => [:facebook]
 
   has_many :tasks
+  has_many :journals
 
   # Facebook Stuffs ===============================================
 

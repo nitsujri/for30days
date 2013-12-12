@@ -4,6 +4,7 @@ class Task < ActiveRecord::Base
   belongs_to :user
 
   has_many :task_logs
+  has_many :journals, :as => :journable
 
   #We are 1 indexed
   def day_count
