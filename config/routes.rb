@@ -9,7 +9,12 @@ For30days::Application.routes.draw do
       get 'completed' => 'tasks#completed', :as => 'completed'
       get 'missed'    => 'tasks#missed', :as => 'missed'
 
-      resource :journal, except: [:show]
+      resources :task_logs, path: "days" do
+        resource :journal, except: [:show] #task logs also have journal entries
+      end        
+
+      resource :journal, except: [:show] #tasks have journal entries
+
     end
 
     resources :history, only: [:index]

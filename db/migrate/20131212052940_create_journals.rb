@@ -3,7 +3,7 @@ class CreateJournals < ActiveRecord::Migration
     create_table :journals do |t|
       t.integer :user_id
       t.integer :journable_id
-      t.string :jounerable_type
+      t.string :journable_type
       t.text :text
 
       t.timestamps

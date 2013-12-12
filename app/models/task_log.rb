@@ -2,5 +2,5 @@ class TaskLog < ActiveRecord::Base
 
   belongs_to :task
 
-  has_many :journals, :as => :journable
+  has_one :journal, :as => :journable
 end

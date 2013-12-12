@@ -24,14 +24,21 @@ class JournalsController < ApplicationController
   # POST /journals
   # POST /journals.json
   def create
-    @journal = Journal.new(journal_params)
+    @journal         = Journal.new(journal_params)
+    @journal.user_id = current_user.id
+
+    if params[:task_log_id].present?
+      @journal.journable = TaskLog.find(params[:task_log_id])
+    elsif params[:taks_id].present?
+      @journal.journable = Task.find(params[:task_id])
+    end
 
     respond_to do |format|
       if @journal.save
-        format.html { redirect_to @journal, notice: 'Journal was successfully created.' }
+        format.html { redirect_to :back, notice: 'Journal was successfully created.' }
         format.json { render action: 'show', status: :created, location: @journal }
       else
-        format.html { render action: 'new' }
+        format.html { redirect_to :back, alert: "Sorry, Journal could not be created." }
         format.json { render json: @journal.errors, status: :unprocessable_entity }
       end
     end
@@ -69,6 +76,7 @@ class JournalsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def journal_params
-      params[:journal]
+      params.require(:journal).permit(:text)
+      # params.require(:task).permit(:name, :user_id, :start_date)
     end
 end

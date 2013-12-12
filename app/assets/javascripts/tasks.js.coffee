@@ -3,9 +3,6 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 ready = ->
-  $('#task-start-date').datepicker({
-    format: "yyyy-mm-dd"
-  });
 
   oldVal = $('#do-this').val()
   origVal = "Tackle This" #I can't get it to copy properly

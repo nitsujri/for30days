@@ -15,7 +15,12 @@ class HomeController < ApplicationController
       end
 
       if @current_task.present?
-        @journal = Journal.new
+        if @current_task.marked_today?
+          
+          @current_task_log = @current_task.todays_log
+          @journal          = Journal.new
+
+        end
       else
         @inactive_tasks = Task.where(status: "inactive")
 

@@ -15,3 +15,8 @@
 
     %h2
       Write about It
+
+    =form_for @journal, :url => user_task_task_log_journal_url({user_id: current_user.id, task_id: @current_task.id, task_log_id: @current_task_log.id }) do |f|
+      =f.text_area :text
+
+      =f.submit

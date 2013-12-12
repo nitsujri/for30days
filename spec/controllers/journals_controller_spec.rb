@@ -20,15 +20,19 @@ require 'spec_helper'
 
 describe JournalsController do
 
+  before :each do
+    request.env["HTTP_REFERER"] = "http://google.com/"
+  end
+
   # # This should return the minimal set of attributes required to create a valid
   # # Journal. As you add validations to Journal, be sure to
   # # adjust the attributes here as well.
-  # let(:valid_attributes) { {  } }
+  let(:valid_attributes) { { :text => "Journal text" } }
 
   # # This should return the minimal set of values that should be in the session
   # # in order to pass any filters (e.g. authentication) defined in
   # # JournalsController. Be sure to keep this updated too.
-  # let(:valid_session) { {} }
+  let(:valid_session) { {} }
 
   # describe "GET index" do
   #   it "assigns all journals as @journals" do
@@ -61,42 +65,52 @@ describe JournalsController do
   #   end
   # end
 
-  # describe "POST create" do
-  #   describe "with valid params" do
-  #     it "creates a new Journal" do
-  #       expect {
-  #         post :create, {:journal => valid_attributes}, valid_session
-  #       }.to change(Journal, :count).by(1)
-  #     end
+  describe "POST create" do
 
-  #     it "assigns a newly created journal as @journal" do
-  #       post :create, {:journal => valid_attributes}, valid_session
-  #       expect(assigns(:journal)).to be_a(Journal)
-  #       expect(assigns(:journal)).to be_persisted
-  #     end
+    before(:each) do
 
-  #     it "redirects to the created journal" do
-  #       post :create, {:journal => valid_attributes}, valid_session
-  #       expect(response).to redirect_to(Journal.last)
-  #     end
-  #   end
+      @user     = FactoryGirl.create(:user)
+      @task     = FactoryGirl.create(:task)
+      @task_log = FactoryGirl.create(:task_log)
+      sign_in @user
 
-  #   describe "with invalid params" do
-  #     it "assigns a newly created but unsaved journal as @journal" do
-  #       # Trigger the behavior that occurs when invalid params are submitted
-  #       Journal.any_instance.stub(:save).and_return(false)
-  #       post :create, {:journal => {  }}, valid_session
-  #       expect(assigns(:journal)).to be_a_new(Journal)
-  #     end
+    end
 
-  #     it "re-renders the 'new' template" do
-  #       # Trigger the behavior that occurs when invalid params are submitted
-  #       Journal.any_instance.stub(:save).and_return(false)
-  #       post :create, {:journal => {  }}, valid_session
-  #       expect(response).to render_template("new")
-  #     end
-  #   end
-  # end
+    describe "with valid params" do
+      it "creates a new Journal" do
+        expect {
+          post :create, {:journal => valid_attributes, :user_id => @user.id, :task_id => @task.id, :task_log_id => @task_log.id}
+        }.to change(Journal, :count).by(1)
+      end
+
+    #   it "assigns a newly created journal as @journal" do
+    #     post :create, {:journal => valid_attributes}, valid_session
+    #     expect(assigns(:journal)).to be_a(Journal)
+    #     expect(assigns(:journal)).to be_persisted
+    #   end
+
+    #   it "redirects to the created journal" do
+    #     post :create, {:journal => valid_attributes}, valid_session
+    #     expect(response).to redirect_to(Journal.last)
+    #   end
+    # end
+
+    # describe "with invalid params" do
+    #   it "assigns a newly created but unsaved journal as @journal" do
+    #     # Trigger the behavior that occurs when invalid params are submitted
+    #     Journal.any_instance.stub(:save).and_return(false)
+    #     post :create, {:journal => {  }}, valid_session
+    #     expect(assigns(:journal)).to be_a_new(Journal)
+    #   end
+
+    #   it "re-renders the 'new' template" do
+    #     # Trigger the behavior that occurs when invalid params are submitted
+    #     Journal.any_instance.stub(:save).and_return(false)
+    #     post :create, {:journal => {  }}, valid_session
+    #     expect(response).to render_template("new")
+    #   end
+    end
+  end
 
   # describe "PUT update" do
   #   describe "with valid params" do

@@ -4,7 +4,8 @@ class Task < ActiveRecord::Base
   belongs_to :user
 
   has_many :task_logs
-  has_many :journals, :as => :journable
+  
+  has_one :journal, :as => :journable
 
   #We are 1 indexed
   def day_count
@@ -27,24 +28,26 @@ class Task < ActiveRecord::Base
 
   def marked_today?
     
+    return true if todays_log.present?
+
+    return false
+    
+  end
+
+  def todays_log
     #get User's Time
     Time.use_zone self.user.time_zone do
       user_time = Time.zone.now
       mysql_tz_name = ActiveSupport::TimeZone[self.user.time_zone].tzinfo.name
 
       #Convert everything to user's local time, otherwise things get funky
-      if self.task_logs.where(
+      return self.task_logs.where(
                               "DATE(CONVERT_TZ(created_at, 'UTC', '#{mysql_tz_name}')) = ?",
                               user_time.to_date
-                            ).present?
-        return true 
-      end
+                            ).first
 
     end
 
-    return false
-    
-    #get task log in User's date
   end
 
   class << self
