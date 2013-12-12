@@ -1,15 +1,13 @@
 -if notice || alert
-  .row
-    .flash-msgs
-      -if notice
-        .alert.alert-success.notice
-          =notice
-      -if alert
-        .alert.alert-danger
-          =alert
-.row
-  .span12
-    #main-content
-      = yield
+  .flash-msgs
+    -if notice
+      .alert.alert-success.notice
+        =notice
+    -if alert
+      .alert.alert-danger
+        =alert
+
+#main-content
+  = yield
 
 =render :partial => "layouts/footer"
