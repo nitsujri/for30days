@@ -1,18 +1,12 @@
-= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook)
+.signup-well.well.well-lg.col-md-4
+  .title
+    Sign in
+  .text-center
+    = link_to "Sign in with <b>Facebook</b>".html_safe, user_omniauth_authorize_path(:facebook), class: "btn-auth btn-facebook large"
 
-%h2 Sign in
-= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
-  %div
-    = f.label :email
-    %br/
-    = f.email_field :email, :autofocus => true
-  %div
-    = f.label :password
-    %br/
-    = f.password_field :password
-  - if devise_mapping.rememberable?
-    %div
-      = f.check_box :remember_me
-      = f.label :remember_me
-  %div= f.submit "Sign in"
-= render "devise/shared/links"
+.explain-well.well.well-sm.col-md-4
+  For our MVP, we are only implementing Facebook Login. Forgive us and Thanks for your understanding!
+
+  .text-right
+    %br
+    \- For30Days Team

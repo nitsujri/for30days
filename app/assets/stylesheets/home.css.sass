@@ -1,2 +1,49 @@
+.start-box
+  padding-bottom: 2em
+  float: none
+
+#first-goal
+  margin: 0 auto
+  float: none
+
+  .first-goal-input
+    font-size: 24px
+    height: auto
+
+  .get-started-btn
+    font-size: 24px
+
 .vid-link
   font-size: 2em
+
+.background
+  margin-top: -20px
+  background-image: url(the-light-of-a-rainy-day.jpg)
+  // background-position: center center
+
+
+@keyframes blink
+  0%
+    color: black
+  100%
+    color: black
+
+
+@-webkit-keyframes blink
+  to
+    visibility: hidden
+
+.blink
+  -webkit-animation: blink 1s steps(2, start) infinite
+  -moz-animation: blink 1s steps(2, start) infinite
+  -ms-animation: blink 1s steps(2, start) infinite
+  -o-animation: blink 1s steps(2, start) infinite
+  animation: blink 1s steps(2, start) infinite
+
+
+// .blink
+//   animation: blink 1s steps(5, start) infinite
+
+// @keyframes blink
+//   to
+//     visibility: hidden

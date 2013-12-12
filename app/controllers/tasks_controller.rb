@@ -5,7 +5,7 @@ class TasksController < ApplicationController
   # GET /tasks
   # GET /tasks.json
   def index
-    if params[:user_id]
+    if params[:user_id].present?
       load_new_task
       @tasks = Task.where(user_id: params[:user_id])
       

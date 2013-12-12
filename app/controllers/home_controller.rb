@@ -1,5 +1,6 @@
 class HomeController < ApplicationController
-
+  layout "application-hp"
+  
   def index
     if user_signed_in?
       signed_in_home 

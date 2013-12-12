@@ -1,30 +1,52 @@
+-img_url = "the-light-of-a-rainy-day.jpg"
+
+.background{:style => "background-image: url(assets/#{img_url})"}
+  .container
+    .row
+      .col-md-7.start-box.text-center.center-block
+
+        .page-header.bs-masthead{role: "main"}
+          %h1
+            %small
+              Each day, I will 
+            :plain
+              <span id="do-this">Do New Things</span><span id="typing-cursor" class="blink">_</span>
+            
+            %small
+              for 30 days.
+        =form_for @task, html: {id: "first-goal", role: "form", class: ""} do |f|
+          .form-group
+            =f.text_field :name, class: "form-control first-goal-input", placeholder: "I want to..."
+          .form-group
+            %button.btn.btn-success.get-started-btn{type: "submit"}
+              Let's Get Started
+
+.container
+  .main-sell.row
+    .col-md-4
+      .well
+        .rolling-suggestor.clearfix
+          .user-pic.pull-left
+          .quote.pull-left
+        .pitch
+          %h3 Stretch yourself.
+          %p
+            Always wanted to try it but couldn't get started? 
+
+          %p
+            Something you should do because it's better, healtier, will improve your life?
+
+          %p
+            For 30 Days is a simple app to help walk with you while you try.
+
+          =link_to "Read More", "#"
+
+    .col-md-8
+      .well
+        .video-container
+          %iframe{allowfullscreen: "", frameborder: "0", height: "360", mozallowfullscreen: "", scrolling: "no", src: "http://embed.ted.com/talks/matt_cutts_try_something_new_for_30_days.html", webkitallowfullscreen: "", width: "690"}
+
+          .vid-link
+            =link_to "Matt Cutts: Try Something New for 30 Days", "http://www.ted.com/talks/matt_cutts_try_something_new_for_30_days.html", target: "_blank", rel: "nofollow"
 
 
-.row
-  .col-md-7
-    .page-header.bs-masthead{role: "main"}
-      .container
-        %h1
-          %small
-            Step 1. 
-          Who? What? Why? How?
-    .video-container
-      %iframe{allowfullscreen: "", frameborder: "0", height: "360", mozallowfullscreen: "", scrolling: "no", src: "http://embed.ted.com/talks/matt_cutts_try_something_new_for_30_days.html", webkitallowfullscreen: "", width: "640"}
-
-      .vid-link
-        =link_to "Matt Cutts: Try Something New for 30 Days", "http://www.ted.com/talks/matt_cutts_try_something_new_for_30_days.html", target: "_blank", rel: "nofollow"
-
-
-  .col-md-5
-    .page-header.bs-masthead{role: "main"}
-      .container
-        %h1
-          %small
-            Step 2.
-          Now... Do
-    =form_for @task, id: "first-goal", role: "form" do |f|
-      .form-group
-        =f.text_field :name, class: "form-control"
-      .form-group
-        %button.btn.btn-success{type: "submit"}
-          First New Thing

@@ -6,7 +6,7 @@
       %span#do-this="Tackle This"
     %small
       each day for 30 days
-= render 'form'
+= render partial: 'form', locals: { task: @task }
 
 %h1="Your #{Task.display_name_s_long}"
 %table.table
