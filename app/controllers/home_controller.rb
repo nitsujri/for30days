@@ -1,7 +1,11 @@
 class HomeController < ApplicationController
 
   def index
-    signed_in_home if user_signed_in?
+    if user_signed_in?
+      signed_in_home 
+    else
+      @task = Task.new
+    end
   end
 
 

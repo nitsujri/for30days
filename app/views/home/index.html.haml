@@ -22,9 +22,9 @@
           %small
             Step 2.
           Now... Do
-    =form_tag "", id: "first-goal", role: "form" do
+    =form_for @task, id: "first-goal", role: "form" do |f|
       .form-group
-        =text_field :task, :name, class: "form-control"
+        =f.text_field :name, class: "form-control"
       .form-group
         %button.btn.btn-success{type: "submit"}
           First New Thing
