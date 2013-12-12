@@ -19,15 +19,18 @@ class ApplicationController < ActionController::Base
       params[:task] = session[:task]
       session[:task] = nil #zero it out so we don't get stuck
 
-      if current_user.active_tasks.count.zero?
+      if current_user.current_tasks.count.zero?
         status = "active"
+        start_date = Time.now.in_time_zone(current_user.time_zone).to_date
       else
         status = "inactive"
+        start_date = nil
       end
 
-      @task         = Task.new(params.require(:task).permit(:name))
-      @task.status  = status
-      @task.user_id = current_user.id
+      @task            = Task.new(params.require(:task).permit(:name))
+      @task.status     = status
+      @task.user_id    = current_user.id
+      @task.start_date = start_date
       @task.save
     
     end

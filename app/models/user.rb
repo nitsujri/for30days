@@ -8,6 +8,11 @@ class User < ActiveRecord::Base
   has_many :tasks
   has_many :journals
 
+
+  def current_tasks
+    self.tasks.where(status: ["active", "inactive"])
+  end
+
   # Facebook Stuffs ===============================================
 
   def absorb_graph_data
