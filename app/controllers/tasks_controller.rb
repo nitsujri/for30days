@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
-  before_filter :authenticate_user!
+  before_action :authenticate_user!, except: [:create]
 
   # GET /tasks
   # GET /tasks.json
@@ -31,6 +31,15 @@ class TasksController < ApplicationController
   # POST /tasks
   # POST /tasks.json
   def create
+
+    #We have to run our own auth here
+    unless user_signed_in?
+      session[:task] = params[:task]
+
+      redirect_to new_user_session_url
+      return
+    end
+
     @task = Task.new(task_params)
     @task.user_id = current_user.id
 
@@ -143,7 +152,7 @@ class TasksController < ApplicationController
   end
 
 
-  private
+  protected
     # Use callbacks to share common setup or constraints between actions.
     def set_task
       @task = Task.find(params[:id])
@@ -155,6 +164,6 @@ class TasksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def task_params
-      params.require(:task).permit(:name, :user_id, :start_date)
+      params.require(:task).permit(:name)
     end
 end
