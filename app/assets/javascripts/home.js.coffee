@@ -24,13 +24,12 @@ ready = ->
       "Write a short story",
     ]
 
-  magicType = ->
-
-  magicType.run_auto_typing = true
+  magicType = 
+    run: true
 
   magicType.autoDelete = ->
 
-    return unless magicType.run_auto_typing #break the auto typing
+    return unless magicType.run #break the auto typing
 
     str = $.trim($("#do-this").html()).slice(0, -1)
     
@@ -48,14 +47,11 @@ ready = ->
       
   magicType.autoType = (aStr) ->
     
-    return unless magicType.run_auto_typing #break the auto typing
+    return unless magicType.run #break the auto typing
 
-    #Save first array value and remove it from the array.
     char = aStr.shift()
-    #Add it to the input field.
     $("#do-this").html $("#do-this").html() + char
 
-    #Check if the length is greater than 0 to continue.
     if aStr.length > 0
       setTimeout (->
         magicType.autoType aStr
@@ -82,11 +78,11 @@ ready = ->
     if val isnt oldVal
       oldVal = val
       unless val.trim() == ""
-        magicType.run_auto_typing = false
+        magicType.run = false
         $('#do-this').html($(this).val())
       else
         $('#do-this').html("")
-        magicType.run_auto_typing = true
+        magicType.run = true
         magicType.autoDelete()
 
   # Rolling Suggestions ===========================

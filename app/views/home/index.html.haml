@@ -1,5 +1,8 @@
 -img_url = "the-light-of-a-rainy-day.jpg"
 
+%script
+  != "window.auto_typing_tasks = #{@autotype_list}"
+
 .background{:style => "background-image: url(assets/#{img_url})"}
   .container
     .row

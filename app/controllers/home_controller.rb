@@ -1,11 +1,19 @@
 class HomeController < ApplicationController
   layout "application-hp"
-  
+
   def index
     if user_signed_in?
       signed_in_home 
     else
       @task = Task.new
+      @autotype_list = [
+        "Run 5 miles",
+        "Say thank you",
+        "Tell someone I love them",
+        "Learn French",
+        "Write a blog post",
+        "Write a short story",
+      ]
     end
   end
 
