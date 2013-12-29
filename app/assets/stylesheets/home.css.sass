@@ -19,17 +19,6 @@
 .background
   margin-top: -20px
 
-@keyframes blink
-  0%
-    color: black
-  100%
-    color: black
-
-
-@-webkit-keyframes blink
-  to
-    visibility: hidden
-
 .blink
   -webkit-animation: blink 1s steps(2, start) infinite
   -moz-animation: blink 1s steps(2, start) infinite
@@ -37,10 +26,30 @@
   -o-animation: blink 1s steps(2, start) infinite
   animation: blink 1s steps(2, start) infinite
 
+@keyframes blink
+  to
+    visibility: hidden
 
-// .blink
-//   animation: blink 1s steps(5, start) infinite
+@-webkit-keyframes blink
+  to
+    visibility: hidden
 
-// @keyframes blink
-//   to
-//     visibility: hidden
+.main-sell
+  h3
+    margin-top: 0.1em
+
+  .ex-user-task
+    position: relative
+    margin: 0 0 1em
+
+    .user-pic
+      width: 32px
+      height: 32px
+      display: block
+      margin-left: 1em
+
+    .task
+      position: absolute
+      top: 50%
+      left: 75px
+      font-style: italic

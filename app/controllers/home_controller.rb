@@ -1,5 +1,4 @@
 class HomeController < ApplicationController
-  layout "application-hp"
 
   def index
     if user_signed_in?
@@ -14,6 +13,9 @@ class HomeController < ApplicationController
         "Write a blog post",
         "Write a short story",
       ]
+
+      @ex_users = User.includes(:tasks).order("RAND()").limit(3)
+
     end
   end
 

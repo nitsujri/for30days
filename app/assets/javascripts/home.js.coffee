@@ -4,6 +4,8 @@
 
 ready = ->
 
+  # Resizes Video =================================
+
   newwidth = $(".video-container").innerWidth()
   $("iframe").css width: newwidth + "px"
 
@@ -87,24 +89,23 @@ ready = ->
 
   # Rolling Suggestions ===========================
 
-  unless !!window.suggestion_list
-    window.suggestion_list = [
-      {profile_pic: "https://fbcdn-profile-a.akamaihd.net/hprofile-ak-prn2/275912_10700263_599964515_q.jpg", quote: "Facebook"},
-      {profile_pic: "https://fbcdn-profile-a.akamaihd.net/hprofile-ak-prn2/275912_10700263_599964515_q.jpg", quote: "Punch someone in the face 2"},
-      {profile_pic: "https://fbcdn-profile-a.akamaihd.net/hprofile-ak-prn2/275912_10700263_599964515_q.jpg", quote: "Punch someone in the face 3"},
-      {profile_pic: "https://fbcdn-profile-a.akamaihd.net/hprofile-ak-prn2/275912_10700263_599964515_q.jpg", quote: "Punch someone in the face 4"},
-      {profile_pic: "https://fbcdn-profile-a.akamaihd.net/hprofile-ak-prn2/275912_10700263_599964515_q.jpg", quote: "Punch someone in the face 5"},
+  # unless !!window.suggestion_list
+  #   window.suggestion_list = [
+  #     {profile_pic: "https://fbcdn-profile-a.akamaihd.net/hprofile-ak-prn2/275912_10700263_599964515_q.jpg", quote: "Facebook"},
+  #     {profile_pic: "https://fbcdn-profile-a.akamaihd.net/hprofile-ak-prn2/275912_10700263_599964515_q.jpg", quote: "Punch someone in the face 2"},
+  #     {profile_pic: "https://fbcdn-profile-a.akamaihd.net/hprofile-ak-prn2/275912_10700263_599964515_q.jpg", quote: "Punch someone in the face 3"},
+  #     {profile_pic: "https://fbcdn-profile-a.akamaihd.net/hprofile-ak-prn2/275912_10700263_599964515_q.jpg", quote: "Punch someone in the face 4"},
+  #     {profile_pic: "https://fbcdn-profile-a.akamaihd.net/hprofile-ak-prn2/275912_10700263_599964515_q.jpg", quote: "Punch someone in the face 5"},
+  #   ]
 
-    ]
-
-  roll_suggestions = ->
-    $('.rolling-suggestor').fadeOut(500, ->
-      clip = window.suggestion_list[Math.floor(Math.random() * window.suggestion_list.length)]
-      # alert clip.profile_pic
-      $('.user-pic').html("<img src='#{clip.profile_pic}' />") #unless !!clip.profile_pic
-      $('.quote').html(clip.quote)
-      $('.rolling-suggestor').fadeIn(500)
-    )
+  # roll_suggestions = ->
+  #   $('.rolling-suggestor').fadeOut(500, ->
+  #     clip = window.suggestion_list[Math.floor(Math.random() * window.suggestion_list.length)]
+  #     # alert clip.profile_pic
+  #     $('.user-pic').html("<img src='#{clip.profile_pic}' />") unless !!clip.profile_pic
+  #     $('.quote').html(clip.quote)
+  #     $('.rolling-suggestor').fadeIn(500)
+  #   )
 
   # roll_suggestions()
   # setInterval (->

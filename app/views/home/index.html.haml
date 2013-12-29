@@ -28,16 +28,22 @@
   .main-sell.row
     .col-md-4
       .well
-        .rolling-suggestor.clearfix
-          .user-pic.pull-left
-          .quote.pull-left
+        %h3 Others Are Tackling
+        -@ex_users.each do |usr|
+          .ex-user-task.clearfix
+            .user-pic.pull-left
+              =image_tag usr.profile_picture
+            .task.pull-left
+              =surround '"', '"' do
+                =usr.tasks.order("RAND()").first.name.truncate(27, separator: /\s/)
+      .well
         .pitch
-          %h3 Stretch yourself.
+          %h3 Stretch Yourself
           %p
             Always wanted to try it but couldn't get started? 
 
           %p
-            Something you should do because it's better, healtier, will improve your life?
+            Something you should do because it's better, healtier, or will improve your life?
 
           %p
             For 30 Days is a simple app to help walk with you while you try.

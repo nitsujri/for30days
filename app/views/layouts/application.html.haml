@@ -1,3 +1,5 @@
+-container = params[:controller] == "home" && !user_signed_in? ? "" : "container"
+
 !!!
 %html{lang: "en"}
   
@@ -5,6 +7,17 @@
 
   %body
     =render :partial => "shared/navbar_main"
-    .container
+    #main-content
+      %div{class: container}
 
-      =render :partial => "layouts/main_content"
+        -if notice || alert
+          .flash-msgs
+            -if notice
+              .alert.alert-success.notice
+                =notice
+            -if alert
+              .alert.alert-danger
+                =alert
+        = yield
+
+    =render :partial => "layouts/footer"

@@ -10,3 +10,15 @@
 //Pages
 @import "home";
 @import "users";
+
+
+body{
+  background: $light-grey;
+}
+
+#main-content{
+  background: white;
+  margin-top: -20px;
+  padding-top: 20px;
+  padding-bottom: 3em;
+}
