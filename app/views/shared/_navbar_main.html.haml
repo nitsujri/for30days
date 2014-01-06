@@ -32,6 +32,6 @@
                 = link_to "Edit", edit_user_url(current_user.id)
               %li
                 = link_to "Log Out", destroy_user_session_url, :method => :delete
-        -elsif params[:controller] != "devise/sessions"
+        -elsif params[:controller] != "devise/sessions" && @coming_soon != true 
           %li
             = link_to "<span class='btn-auth btn-facebook'>Sign in with <b>Facebook</b></span>".html_safe, user_omniauth_authorize_path(:facebook)

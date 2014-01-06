@@ -1,6 +1,7 @@
 class HomeController < ApplicationController
 
   def index
+
     if user_signed_in?
       signed_in_home 
     else
@@ -15,6 +16,15 @@ class HomeController < ApplicationController
       ]
 
       @ex_users = User.includes(:tasks).order("RAND()").limit(3)
+
+      #Check is we're supposed to throw up a splash page
+      #Bad code, but playing around.
+      if Rails.env == "development"
+        @new_user = UserPotential.new
+        @coming_soon = true
+        render "coming_soon"
+        return
+      end
 
     end
   end

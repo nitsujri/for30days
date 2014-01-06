@@ -1,0 +1,61 @@
+-img_url = "the-light-of-a-rainy-day.jpg"
+
+%script
+  != "window.auto_typing_tasks = #{@autotype_list}"
+
+.background{:style => "background-image: url(images/#{img_url})"}
+  .container
+    .row
+      .col-md-7.start-box.text-center.center-block
+
+        .page-header.bs-masthead{role: "main"}
+          %h1
+            %small
+              Each day, I will 
+            :plain
+              <span id="do-this">Do New Things</span><span id="typing-cursor" class="blink">_</span>
+            
+            %small
+              for 30 days.
+        =form_for @new_user, html: {id: "first-goal", role: "form", class: ""} do |f|
+          .form-group
+            =f.text_field :name, class: "form-control first-goal-input", placeholder: "E-mail Address"
+          .form-group
+            %button.btn.btn-success.get-started-btn{type: "submit"}
+              Notify Me
+
+.container
+  .main-sell.row
+    .col-md-4
+      .well
+        %h3 Others Are Tackling
+        -@ex_users.each do |usr|
+          .ex-user-task.clearfix
+            .user-pic.pull-left
+              =image_tag usr.profile_picture
+            .task.pull-left
+              =surround '"', '"' do
+                =usr.tasks.order("RAND()").first.name.truncate(27, separator: /\s/)
+      .well
+        .pitch
+          %h3 Stretch Yourself
+          %p
+            Always wanted to try it but couldn't get started? 
+
+          %p
+            Something you should do because it's better, healtier, or will improve your life?
+
+          %p
+            For 30 Days is a simple app to help walk with you while you try.
+
+          =link_to "Read More", "#"
+
+    .col-md-8
+      .well
+        .video-container
+          %iframe{allowfullscreen: "", frameborder: "0", height: "360", mozallowfullscreen: "", scrolling: "no", src: "http://embed.ted.com/talks/matt_cutts_try_something_new_for_30_days.html", webkitallowfullscreen: "", width: "690"}
+
+          .vid-link
+            =link_to "Matt Cutts: Try Something New for 30 Days", "http://www.ted.com/talks/matt_cutts_try_something_new_for_30_days.html", target: "_blank", rel: "nofollow"
+
+
