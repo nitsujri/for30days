@@ -11,13 +11,16 @@
       %div{class: container}
 
         -if notice || alert
-          .flash-msgs
-            -if notice
-              .alert.alert-success.notice
-                =notice
-            -if alert
-              .alert.alert-danger
-                =alert
+          .container.flash-msgs
+            .flash-msgs-inner
+              -if notice
+                .alert.alert-success.notice
+                  =notice
+                  %span.glyphicon.glyphicon-remove.flash-close
+              -if alert
+                .alert.alert-danger
+                  =alert
+                  %span.glyphicon.glyphicon-remove.flash-close
         = yield
 
     =render :partial => "layouts/footer"
