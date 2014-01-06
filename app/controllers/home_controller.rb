@@ -19,7 +19,7 @@ class HomeController < ApplicationController
 
       #Check is we're supposed to throw up a splash page
       #Bad code, but playing around.
-      if Rails.env == "development"
+      if Rails.env == "production"
         @new_user = UserPotential.new
         @coming_soon = true
         render "coming_soon"
