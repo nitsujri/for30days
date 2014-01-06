@@ -11,12 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131212052940) do
+ActiveRecord::Schema.define(version: 20140106060141) do
 
   create_table "journals", force: true do |t|
     t.integer  "user_id"
     t.integer  "journable_id"
-    t.string   "jounerable_type"
+    t.string   "journable_type"
     t.text     "text"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -38,6 +38,12 @@ ActiveRecord::Schema.define(version: 20131212052940) do
     t.integer  "user_id"
     t.date     "start_date"
     t.string   "status",     default: "inactive"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "user_potentials", force: true do |t|
+    t.string   "email"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

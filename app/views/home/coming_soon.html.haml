@@ -18,13 +18,18 @@
             %small
               for 30 days.
         =form_for @new_user, html: {id: "first-goal", role: "form", class: ""} do |f|
+
           .form-group
-            =f.text_field :name, class: "form-control first-goal-input", placeholder: "E-mail Address"
+            =f.text_field :email, class: "form-control first-goal-input", placeholder: "E-mail Address"
           .form-group
             %button.btn.btn-success.get-started-btn{type: "submit"}
               Notify Me
 
 .container
+  .row
+    .col-md-8
+      %h1
+        We're Launching Soon! Get notified...
   .main-sell.row
     .col-md-4
       .well

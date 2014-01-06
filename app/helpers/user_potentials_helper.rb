@@ -1,0 +1,2 @@
+module UserPotentialsHelper
+end
